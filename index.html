@@ -194,7 +194,7 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
-        /* Animações Únicas das Páginas */
+        /* Animações das Páginas */
         .page.active.anim-fade-up {
             display: block;
             animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -280,6 +280,31 @@
             font-size: 1.1rem;
             color: #cbd5e1;
             line-height: 1.8;
+        }
+
+        /* Estilo da Imagem Real na Página 7 */
+        .real-image-container {
+            margin: 1.5rem 0;
+            text-align: center;
+            background: rgba(3, 7, 18, 0.6);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .real-image-container img {
+            max-width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .image-caption {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 8px;
+            font-style: italic;
         }
 
         /* Formatação de Fórmulas */
@@ -431,8 +456,8 @@
             </div>
 
             <div class="page-controls">
-                <button class="nav-btn" disabled>← Anterior (Seta Esquema)</button>
-                <button class="nav-btn" onclick="switchPage(1)">Próxima → (Seta Direita)</button>
+                <button class="nav-btn" disabled>← Anterior</button>
+                <button class="nav-btn" onclick="switchPage(1)">Próxima →</button>
             </div>
         </div>
 
@@ -579,7 +604,14 @@
         <!-- PÁGINA 7 -->
         <div class="page anim-rotate-in">
             <h2>📊 7. Conjunto Imagem Im(f)</h2>
-            <p>A imagem é o conjunto dos valores que a variável <code>y</code> assume na função:</p>
+            <p>A imagem é o conjunto de todos os valores no eixo vertical que a variável <code>y</code> pode assumir. O vértice é o limite natural dessa trajetória real.</p>
+            
+            <!-- IMAGEM REAL ADICIONADA -->
+            <div class="real-image-container">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/ParabolicWaterTrajectory.jpg" alt="Trajetória Parabólica Real de uma Fonte de Água">
+                <div class="image-caption">Exemplo na física real: O arco d'água forma uma parábola. O topo da curva é o limite do conjunto imagem ($Y_v$).</div>
+            </div>
+
             <div class="formula">
                 Se a > 0: Im(f) = [ Y_v , +∞ ) &nbsp;&nbsp;&nbsp;(y ≥ Y_v)<br>
                 Se a < 0: Im(f) = ( -∞ , Y_v ] &nbsp;&nbsp;&nbsp;(y ≤ Y_v)
@@ -664,7 +696,7 @@
             pages.forEach((page, index) => {
                 if (index === currentPageIndex) {
                     page.classList.remove('active');
-                    void page.offsetWidth; // Força recálculo da animação (Reflow)
+                    void page.offsetWidth; // Força recálculo da animação
                     page.classList.add('active');
                 } else {
                     page.classList.remove('active');
@@ -684,7 +716,6 @@
 
         // ESCUTADOR DE TECLADO (Setas do Teclado)
         document.addEventListener('keydown', function(event) {
-            // Se a tela inicial ainda estiver aberta, aceita Espaço ou Enter para entrar
             if (!isAppStarted) {
                 if (event.key === 'Enter' || event.key === ' ') {
                     startApp();
@@ -692,7 +723,6 @@
                 return;
             }
 
-            // Ativação das Setas
             if (event.key === 'ArrowRight') {
                 if (currentPageIndex < totalPages - 1) {
                     switchPage(currentPageIndex + 1);

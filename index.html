@@ -175,7 +175,7 @@
         }
 
         /* ------------------------------------
-           3. PAGES & CUSTOM ANIMATIONS
+           3. PAGES & ANIMATIONS
         ------------------------------------ */
         main {
             max-width: 850px;
@@ -194,7 +194,6 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
         }
 
-        /* Animações Únicas das Páginas */
         .page.active.anim-fade-up {
             display: block;
             animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -282,7 +281,6 @@
             line-height: 1.8;
         }
 
-        /* Formatação de Fórmulas */
         .formula {
             font-family: var(--math-font);
             background: #030712;
@@ -295,7 +293,6 @@
             box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
         }
 
-        /* Caixas de Exercício */
         .exercise-box {
             background: rgba(3, 7, 18, 0.6);
             border: 1px dashed rgba(255, 255, 255, 0.2);
@@ -339,7 +336,6 @@
             font-family: var(--math-font);
         }
 
-        /* Botões de Rodapé da Página */
         .page-controls {
             display: flex;
             justify-content: space-between;
@@ -379,7 +375,7 @@
 </head>
 <body>
 
-    <!-- 1. TELA DE ABERTURA -->
+    <!-- TELA DE ABERTURA -->
     <div id="intro-screen">
         <div class="intro-title">f(x) = ax² + bx + c</div>
         <div class="intro-subtitle">Módulo Interativo: Estudo da Função Quadrática</div>
@@ -406,7 +402,7 @@
         </ul>
     </nav>
 
-    <!-- PÁGINAS -->
+    <!-- PÁGINAS DA APLICAÇÃO -->
     <main>
         <!-- PÁGINA 1 -->
         <div class="page active anim-fade-up">
@@ -431,7 +427,7 @@
             </div>
 
             <div class="page-controls">
-                <button class="nav-btn" disabled>← Anterior (Seta Esquema)</button>
+                <button class="nav-btn" disabled>← Anterior (Seta Esquerda)</button>
                 <button class="nav-btn" onclick="switchPage(1)">Próxima → (Seta Direita)</button>
             </div>
         </div>
@@ -576,22 +572,71 @@
             </div>
         </div>
 
-        <!-- PÁGINA 7 -->
+        <!-- PÁGINA 7 (APRIMORADA) -->
         <div class="page anim-rotate-in">
             <h2>📊 7. Conjunto Imagem Im(f)</h2>
-            <p>A imagem é o conjunto dos valores que a variável <code>y</code> assume na função:</p>
-            <div class="formula">
-                Se a > 0: Im(f) = [ Y_v , +∞ ) &nbsp;&nbsp;&nbsp;(y ≥ Y_v)<br>
-                Se a < 0: Im(f) = ( -∞ , Y_v ] &nbsp;&nbsp;&nbsp;(y ≤ Y_v)
+            <p>O <strong>Conjunto Imagem</strong> representa todos os valores de <code>y</code> (eixo vertical) que a função atinge. Seu limite inicial ou final é sempre o <strong>Y_v (Y do Vértice)</strong>.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
+                
+                <!-- Caso a > 0 -->
+                <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(56, 189, 248, 0.3); padding: 1.2rem; border-radius: 12px; text-align: center;">
+                    <span style="background: var(--primary); color: #0b0f19; padding: 4px 10px; border-radius: 20px; font-weight: bold; font-size: 0.85rem;">Caso a > 0</span>
+                    <h4 style="margin: 0.8rem 0; color: var(--primary);">Existe Valor Mínimo</h4>
+                    
+                    <svg viewBox="0 0 160 120" style="width: 100%; max-width: 160px; height: auto;">
+                        <line x1="20" y1="100" x2="140" y2="100" stroke="#94a3b8" stroke-width="1.5"/>
+                        <line x1="40" y1="10" x2="40" y2="110" stroke="#94a3b8" stroke-width="1.5"/>
+                        <path d="M 50 20 Q 80 90 110 20" fill="none" stroke="#38bdf8" stroke-width="3"/>
+                        <circle cx="80" cy="55" r="4" fill="#f43f5e"/>
+                        <line x1="40" y1="55" x2="80" y2="55" stroke="#f43f5e" stroke-dasharray="3,3"/>
+                        <text x="15" y="58" fill="#f43f5e" font-size="10" font-family="sans-serif">Yv</text>
+                    </svg>
+
+                    <div class="formula" style="font-size: 1rem; margin: 0.8rem 0; padding: 0.6rem;">
+                        Im(f) = [ Y_v , +∞ )<br>
+                        { y ∈ ℝ | y ≥ Y_v }
+                    </div>
+                    <small style="color: var(--text-muted);">A função cresce para cima a partir do ponto mínimo.</small>
+                </div>
+
+                <!-- Caso a < 0 -->
+                <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(244, 63, 94, 0.3); padding: 1.2rem; border-radius: 12px; text-align: center;">
+                    <span style="background: var(--accent); color: #ffffff; padding: 4px 10px; border-radius: 20px; font-weight: bold; font-size: 0.85rem;">Caso a < 0</span>
+                    <h4 style="margin: 0.8rem 0; color: var(--accent);">Existe Valor Máximo</h4>
+                    
+                    <svg viewBox="0 0 160 120" style="width: 100%; max-width: 160px; height: auto;">
+                        <line x1="20" y1="100" x2="140" y2="100" stroke="#94a3b8" stroke-width="1.5"/>
+                        <line x1="40" y1="10" x2="40" y2="110" stroke="#94a3b8" stroke-width="1.5"/>
+                        <path d="M 50 90 Q 80 20 110 90" fill="none" stroke="#f43f5e" stroke-width="3"/>
+                        <circle cx="80" cy="55" r="4" fill="#38bdf8"/>
+                        <line x1="40" y1="55" x2="80" y2="55" stroke="#38bdf8" stroke-dasharray="3,3"/>
+                        <text x="15" y="58" fill="#38bdf8" font-size="10" font-family="sans-serif">Yv</text>
+                    </svg>
+
+                    <div class="formula" style="font-size: 1rem; margin: 0.8rem 0; padding: 0.6rem; border-left-color: var(--accent);">
+                        Im(f) = ( -∞ , Y_v ]<br>
+                        { y ∈ ℝ | y ≤ Y_v }
+                    </div>
+                    <small style="color: var(--text-muted);">A função vem do infinito negativo e atinge o topo no vértice.</small>
+                </div>
+
             </div>
 
-            <div class="exercise-box">
-                <h4>🧠 Qual a Imagem?</h4>
-                <p>Dada a função <code>f(x) = x² - 4</code> cujo Y_v é -4 (com a > 0), qual a Imagem?</p>
-                <button class="toggle-btn" onclick="toggleAnswer(this)">Revelar Resposta</button>
-                <div class="answer-content">
-                    Como a > 0 (1 > 0):<br>
-                    <strong>Im(f) = [ -4 , +∞ )</strong> ou { y ∈ ℝ | y ≥ -4 }
+            <!-- Calculadora Interativa da Imagem -->
+            <div class="exercise-box" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--secondary);">
+                <h4 style="color: var(--primary);">🧮 Simulador de Imagem em Tempo Real:</h4>
+                <p style="font-size: 0.95rem;">Informe os coeficientes e veja o conjunto imagem ser calculado:</p>
+                
+                <div style="display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap;">
+                    <input type="number" id="img-a" placeholder="a" value="1" style="width: 70px; padding: 8px; border-radius: 6px; border: 1px solid #334155; background: #090d16; color: white;">
+                    <input type="number" id="img-b" placeholder="b" value="-4" style="width: 70px; padding: 8px; border-radius: 6px; border: 1px solid #334155; background: #090d16; color: white;">
+                    <input type="number" id="img-c" placeholder="c" value="3" style="width: 70px; padding: 8px; border-radius: 6px; border: 1px solid #334155; background: #090d16; color: white;">
+                    <button class="toggle-btn" onclick="calcularImagemSimulada()" style="margin: 0;">Calcular Imagem</button>
+                </div>
+
+                <div id="img-result" class="answer-content" style="display: block; background: rgba(56, 189, 248, 0.1); border-left-color: var(--primary); color: #f8fafc;">
+                    Clique em "Calcular Imagem" para simular a resposta.
                 </div>
             </div>
 
@@ -601,28 +646,58 @@
             </div>
         </div>
 
-        <!-- PÁGINA 8 -->
+        <!-- PÁGINA 8 (APRIMORADA) -->
         <div class="page anim-slide-down">
             <h2>📉📈 8. Crescimento e Decrescimento</h2>
-            <p>O gráfico altera sua direção exatamente na coordenada do eixo <code>X_v</code>:</p>
-            <p><strong>Para a > 0 (Concavidade para cima ◡):</strong></p>
-            <ul>
-                <li>Decrescente no intervalo: <code>(-∞, X_v]</code></li>
-                <li>Crescente no intervalo: <code>[X_v, +∞)</code></li>
-            </ul>
-            <p><strong>Para a < 0 (Concavidade para baixo ◠):</strong></p>
-            <ul>
-                <li>Crescente no intervalo: <code>(-∞, X_v]</code></li>
-                <li>Decrescente no intervalo: <code>[X_v, +∞)</code></li>
-            </ul>
+            <p>A direção da curva altera-se exatamente no ponto <strong>X_v (X do Vértice)</strong>. Ele funciona como o divisor dos intervalos da função:</p>
 
+            <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
+                <h3 style="margin-top: 0; color: var(--secondary); font-size: 1.2rem;">Comportamento nos Intervalos:</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 1rem;">
+                    
+                    <div style="background: #030712; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary);">
+                        <strong style="color: var(--primary);">Se a > 0 (Sorriso ◡):</strong>
+                        <ul style="padding-left: 1.2rem; margin: 0.5rem 0 0 0; font-size: 0.95rem;">
+                            <li>📉 <strong>Decrescente:</strong> no intervalo ( -∞ , X_v ]</li>
+                            <li>📈 <strong>Crescente:</strong> no intervalo [ X_v , +∞ )</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #030712; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent);">
+                        <strong style="color: var(--accent);">Se a < 0 (Triste ◠):</strong>
+                        <ul style="padding-left: 1.2rem; margin: 0.5rem 0 0 0; font-size: 0.95rem;">
+                            <li>📈 <strong>Crescente:</strong> no intervalo ( -∞ , X_v ]</li>
+                            <li>📉 <strong>Decrescente:</strong> no intervalo [ X_v , +∞ )</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div style="background: rgba(129, 140, 248, 0.08); border: 1px solid rgba(129, 140, 248, 0.2); padding: 1.2rem; border-radius: 12px;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--secondary);">💡 Exemplo Detalhado:</h4>
+                <p style="margin: 0; font-size: 1rem;">Para a função <code>f(x) = -x² + 6x - 5</code>:</p>
+                <ol style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.95rem; color: #cbd5e1;">
+                    <li>Identificamos <code>a = -1</code> (como a < 0, ela sobe primeiro e desce depois).</li>
+                    <li>Calculamos o divisor: <code>X_v = -6 / (2 · -1) = 3</code>.</li>
+                    <li><strong>Conclusão:</strong> Crescente em <code>(-∞, 3]</code> e Decrescente em <code>[3, +∞)</code>.</li>
+                </ol>
+            </div>
+
+            <!-- Calculadora do Eixo de Simetria / Crescimento -->
             <div class="exercise-box">
-                <h4>🧠 Finalizando os Estudos:</h4>
-                <p>Se o X_v de uma função com a > 0 é igual a 3, em qual intervalo ela é crescente?</p>
-                <button class="toggle-btn" onclick="toggleAnswer(this)">Revelar Resposta</button>
-                <div class="answer-content">
-                    Para a > 0, ela cresce após o X_v:<br>
-                    <strong>Intervalo Crescente = [ 3 , +∞ )</strong>
+                <h4>🧠 Analisador de Monotonia:</h4>
+                <p style="font-size: 0.95rem;">Insira valores para saber onde a função sobe ou desce:</p>
+                
+                <div style="display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap;">
+                    <input type="number" id="mono-a" placeholder="a" value="-1" style="width: 70px; padding: 8px; border-radius: 6px; border: 1px solid #334155; background: #090d16; color: white;">
+                    <input type="number" id="mono-b" placeholder="b" value="6" style="width: 70px; padding: 8px; border-radius: 6px; border: 1px solid #334155; background: #090d16; color: white;">
+                    <button class="toggle-btn" onclick="analisarMonotonia()" style="margin: 0;">Analisar Intervalos</button>
+                </div>
+
+                <div id="mono-result" class="answer-content" style="display: block; background: rgba(129, 140, 248, 0.1); border-left-color: var(--secondary); color: #f8fafc;">
+                    Clique em "Analisar Intervalos" para calcular o comportamento.
                 </div>
             </div>
 
@@ -634,7 +709,7 @@
     </main>
 
     <footer>
-        <p>⚡ MathLab - Use as setas do teclado para alternar conteúdos</p>
+        <p>⚡ MathLab - Utilização com suporte a navegação pelas setas do teclado</p>
     </footer>
 
     <!-- LÓGICA EM JAVASCRIPT -->
@@ -643,7 +718,7 @@
         const totalPages = 8;
         let isAppStarted = false;
 
-        // Animação da Tela Inicial
+        // Iniciar aplicação na tela de apresentação
         function startApp() {
             const intro = document.getElementById('intro-screen');
             intro.style.opacity = '0';
@@ -653,7 +728,7 @@
             }, 800);
         }
 
-        // Troca de Páginas por Índice
+        // Alternar páginas por índice
         function switchPage(pageIndex) {
             if (pageIndex < 0 || pageIndex >= totalPages) return;
 
@@ -664,7 +739,7 @@
             pages.forEach((page, index) => {
                 if (index === currentPageIndex) {
                     page.classList.remove('active');
-                    void page.offsetWidth; // Força recálculo da animação (Reflow)
+                    void page.offsetWidth; // Recálculo da animação (Reflow)
                     page.classList.add('active');
                 } else {
                     page.classList.remove('active');
@@ -682,9 +757,8 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ESCUTADOR DE TECLADO (Setas do Teclado)
+        // NAVEGAÇÃO PELAS SETAS DO TECLADO
         document.addEventListener('keydown', function(event) {
-            // Se a tela inicial ainda estiver aberta, aceita Espaço ou Enter para entrar
             if (!isAppStarted) {
                 if (event.key === 'Enter' || event.key === ' ') {
                     startApp();
@@ -692,7 +766,6 @@
                 return;
             }
 
-            // Ativação das Setas
             if (event.key === 'ArrowRight') {
                 if (currentPageIndex < totalPages - 1) {
                     switchPage(currentPageIndex + 1);
@@ -704,7 +777,7 @@
             }
         });
 
-        // Revelar e Ocultar Respostas
+        // Revelar e Ocultar respostas nos exercícios
         function toggleAnswer(btn) {
             const answer = btn.nextElementSibling;
             if (answer.style.display === "block") {
@@ -715,6 +788,52 @@
                 answer.style.display = "block";
                 btn.textContent = "Ocultar Resposta";
                 btn.style.background = "#10b981";
+            }
+        }
+
+        // Calculadora do Conjunto Imagem (Página 7)
+        function calcularImagemSimulada() {
+            const a = parseFloat(document.getElementById('img-a').value);
+            const b = parseFloat(document.getElementById('img-b').value);
+            const c = parseFloat(document.getElementById('img-c').value);
+            const resBox = document.getElementById('img-result');
+
+            if (isNaN(a) || isNaN(b) || isNaN(c) || a === 0) {
+                resBox.innerHTML = "<span style='color: var(--accent);'>Erro: Digite valores numéricos e 'a' diferente de zero.</span>";
+                return;
+            }
+
+            const delta = (b * b) - (4 * a * c);
+            const Yv = -delta / (4 * a);
+
+            if (a > 0) {
+                resBox.innerHTML = `<strong>Resultado (a = ${a} > 0):</strong><br>• Y_v = ${Yv.toFixed(2)}<br>• <strong>Im(f) = [ ${Yv.toFixed(2)} , +∞ )</strong><br>• Notação: { y ∈ ℝ | y ≥ ${Yv.toFixed(2)} }`;
+            } else {
+                resBox.innerHTML = `<strong>Resultado (a = ${a} < 0):</strong><br>• Y_v = ${Yv.toFixed(2)}<br>• <strong>Im(f) = ( -∞ , ${Yv.toFixed(2)} ]</strong><br>• Notação: { y ∈ ℝ | y ≤ ${Yv.toFixed(2)} }`;
+            }
+        }
+
+        // Calculadora de Monotonia (Página 8)
+        function analisarMonotonia() {
+            const a = parseFloat(document.getElementById('mono-a').value);
+            const b = parseFloat(document.getElementById('mono-b').value);
+            const resBox = document.getElementById('mono-result');
+
+            if (isNaN(a) || isNaN(b) || a === 0) {
+                resBox.innerHTML = "<span style='color: var(--accent);'>Erro: Digite valores numéricos e 'a' diferente de zero.</span>";
+                return;
+            }
+
+            const Xv = -b / (2 * a);
+
+            if (a > 0) {
+                resBox.innerHTML = `<strong>Análise para X_v = ${Xv.toFixed(2)} (a > 0):</strong><br>
+                • 📉 <strong>Decrescente:</strong> no intervalo ( -∞ , ${Xv.toFixed(2)} ]<br>
+                • 📈 <strong>Crescente:</strong> no intervalo [ ${Xv.toFixed(2)} , +∞ )`;
+            } else {
+                resBox.innerHTML = `<strong>Análise para X_v = ${Xv.toFixed(2)} (a < 0):</strong><br>
+                • 📈 <strong>Crescente:</strong> no intervalo ( -∞ , ${Xv.toFixed(2)} ]<br>
+                • 📉 <strong>Decrescente:</strong> no intervalo [ ${Xv.toFixed(2)} , +∞ )`;
             }
         }
     </script>

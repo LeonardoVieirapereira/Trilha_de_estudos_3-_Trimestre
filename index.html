@@ -41,9 +41,25 @@
             min-height: 100vh;
         }
 
-        /* ------------------------------------
-           1. ANIMATED INTRO SCREEN
-        ------------------------------------ */
+        /* ESTILO DOS VÍDEOS EMBUTIDOS */
+        .video-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            margin: 1.5rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ANIMATED INTRO SCREEN */
         #intro-screen {
             position: fixed;
             top: 0;
@@ -113,9 +129,7 @@
             50% { filter: drop-shadow(0 0 25px rgba(244, 63, 94, 0.5)); }
         }
 
-        /* ------------------------------------
-           2. NAVIGATION & HEADER
-        ------------------------------------ */
+        /* NAVIGATION & HEADER */
         header {
             text-align: center;
             padding: 2rem 1rem 1rem 1rem;
@@ -174,9 +188,7 @@
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
         }
 
-        /* ------------------------------------
-           3. PAGES & ANIMATIONS
-        ------------------------------------ */
+        /* PAGES & ANIMATIONS */
         main {
             max-width: 850px;
             margin: 2rem auto;
@@ -409,6 +421,12 @@
             <h2>📌 1. Definição da Função Quadrática</h2>
             <p>Uma função é dita <strong>quadrática</strong> (ou do 2º grau) quando é escrita sob a seguinte forma algébrica:</p>
             <div class="formula">f(x) = ax² + bx + c &nbsp;&nbsp;&nbsp;&nbsp;(com a ≠ 0)</div>
+            
+            <!-- VÍDEO PÁGINAS 1 E 2 -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/HYWdb_3TnmA" title="Definição e Gráfico da Função Quadrática" allowfullscreen></iframe>
+            </div>
+
             <ul>
                 <li><strong>a:</strong> Coeficiente principal (define a concavidade). Não pode ser zero!</li>
                 <li><strong>b:</strong> Coeficiente do termo linear (grau 1).</li>
@@ -427,8 +445,8 @@
             </div>
 
             <div class="page-controls">
-                <button class="nav-btn" disabled>← Anterior (Seta Esquerda)</button>
-                <button class="nav-btn" onclick="switchPage(1)">Próxima → (Seta Direita)</button>
+                <button class="nav-btn" disabled>← Anterior</button>
+                <button class="nav-btn" onclick="switchPage(1)">Próxima →</button>
             </div>
         </div>
 
@@ -436,6 +454,12 @@
         <div class="page anim-slide-left">
             <h2>📈 2. Gráfico (A Parábola)</h2>
             <p>O gráfico de uma função quadrática é sempre uma curva simétrica chamada <strong>parábola</strong>.</p>
+            
+            <!-- VÍDEO PÁGINAS 1 E 2 -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/HYWdb_3TnmA" title="Gráfico da Função Quadrática" allowfullscreen></iframe>
+            </div>
+
             <p>A orientação da sua curvatura é determinada exclusivamente pelo sinal do coeficiente <strong>a</strong>:</p>
             <ul>
                 <li><strong>Se a > 0:</strong> Concavidade voltada para <strong>CIMA</strong> ◡ (Sorriso).</li>
@@ -463,6 +487,12 @@
         <div class="page anim-slide-right">
             <h2>🎯 3. Zeros (Raízes) da Função</h2>
             <p>Os zeros são os valores de <code>x</code> para os quais <code>f(x) = 0</code>. Correspondem aos pontos em que a curva cruza o eixo X.</p>
+            
+            <!-- VÍDEO PÁGINA 3 -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/hb0o3f6yDCk" title="Zeros da Função Quadrática" allowfullscreen></iframe>
+            </div>
+
             <div class="formula">
                 Δ = b² - 4ac<br><br>
                 x = (-b ± √Δ) / (2a)
@@ -496,6 +526,12 @@
         <div class="page anim-zoom-in">
             <h2>➕✖️ 4. Soma e Produto das Raízes</h2>
             <p>Método ágil para descobrir raízes inteiras sem utilizar a Fórmula de Bhaskara para a equação <code>ax² + bx + c = 0</code>:</p>
+            
+            <!-- VÍDEO PÁGINA 4 -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/gZdb8S9zJMQ" title="Soma e Produto das Raízes" allowfullscreen></iframe>
+            </div>
+
             <div class="formula">
                 Soma (x₁ + x₂) = -b / a<br>
                 Produto (x₁ · x₂) = c / a
@@ -522,6 +558,12 @@
         <div class="page anim-flip-3d">
             <h2>📍 5. Vértice da Parábola</h2>
             <p>O vértice <code>V(Xv, Yv)</code> é o ponto de curvatura máxima ou mínima da função.</p>
+            
+            <!-- VÍDEO PÁGINAS 5 E 6 -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Jm3U8IHzm8w" title="Vértice da Parábola e Ponto de Máximo e Mínimo" allowfullscreen></iframe>
+            </div>
+
             <div class="formula">
                 X_v = -b / (2a)<br>
                 Y_v = -Δ / (4a)
@@ -549,6 +591,12 @@
         <div class="page anim-bounce">
             <h2>🔝 6. Valor Máximo e Mínimo</h2>
             <p>O valor extremo da função é o próprio valor de <code>Y_v</code>:</p>
+
+            <!-- VÍDEO PÁGINAS 5 E 6 -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/Jm3U8IHzm8w" title="Valor Máximo e Mínimo da Função Quadrática" allowfullscreen></iframe>
+            </div>
+
             <ul>
                 <li>Se <strong>a > 0</strong>: A parábola tem um <strong>Valor MÍNIMO</strong> (no ponto Y_v).</li>
                 <li>Se <strong>a < 0</strong>: A parábola tem um <strong>Valor MÁXIMO</strong> (no ponto Y_v).</li>
@@ -572,11 +620,16 @@
             </div>
         </div>
 
-        <!-- PÁGINA 7 (APRIMORADA) -->
+        <!-- PÁGINA 7 -->
         <div class="page anim-rotate-in">
             <h2>📊 7. Conjunto Imagem Im(f)</h2>
             <p>O <strong>Conjunto Imagem</strong> representa todos os valores de <code>y</code> (eixo vertical) que a função atinge. Seu limite inicial ou final é sempre o <strong>Y_v (Y do Vértice)</strong>.</p>
             
+            <!-- VÍDEO PÁGINAS 7 E 8 -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/APcGeLB1Q7k" title="Conjunto Imagem e Estudo do Crescimento" allowfullscreen></iframe>
+            </div>
+
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
                 
                 <!-- Caso a > 0 -->
@@ -597,7 +650,6 @@
                         Im(f) = [ Y_v , +∞ )<br>
                         { y ∈ ℝ | y ≥ Y_v }
                     </div>
-                    <small style="color: var(--text-muted);">A função cresce para cima a partir do ponto mínimo.</small>
                 </div>
 
                 <!-- Caso a < 0 -->
@@ -618,7 +670,6 @@
                         Im(f) = ( -∞ , Y_v ]<br>
                         { y ∈ ℝ | y ≤ Y_v }
                     </div>
-                    <small style="color: var(--text-muted);">A função vem do infinito negativo e atinge o topo no vértice.</small>
                 </div>
 
             </div>
@@ -626,8 +677,6 @@
             <!-- Calculadora Interativa da Imagem -->
             <div class="exercise-box" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--secondary);">
                 <h4 style="color: var(--primary);">🧮 Simulador de Imagem em Tempo Real:</h4>
-                <p style="font-size: 0.95rem;">Informe os coeficientes e veja o conjunto imagem ser calculado:</p>
-                
                 <div style="display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap;">
                     <input type="number" id="img-a" placeholder="a" value="1" style="width: 70px; padding: 8px; border-radius: 6px; border: 1px solid #334155; background: #090d16; color: white;">
                     <input type="number" id="img-b" placeholder="b" value="-4" style="width: 70px; padding: 8px; border-radius: 6px; border: 1px solid #334155; background: #090d16; color: white;">
@@ -646,10 +695,15 @@
             </div>
         </div>
 
-        <!-- PÁGINA 8 (APRIMORADA) -->
+        <!-- PÁGINA 8 -->
         <div class="page anim-slide-down">
             <h2>📉📈 8. Crescimento e Decrescimento</h2>
             <p>A direção da curva altera-se exatamente no ponto <strong>X_v (X do Vértice)</strong>. Ele funciona como o divisor dos intervalos da função:</p>
+
+            <!-- VÍDEO PÁGINAS 7 E 8 -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/APcGeLB1Q7k" title="Estudo da Monotonia e Crescimento" allowfullscreen></iframe>
+            </div>
 
             <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0;">
                 <h3 style="margin-top: 0; color: var(--secondary); font-size: 1.2rem;">Comportamento nos Intervalos:</h3>
@@ -675,21 +729,8 @@
                 </div>
             </div>
 
-            <div style="background: rgba(129, 140, 248, 0.08); border: 1px solid rgba(129, 140, 248, 0.2); padding: 1.2rem; border-radius: 12px;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--secondary);">💡 Exemplo Detalhado:</h4>
-                <p style="margin: 0; font-size: 1rem;">Para a função <code>f(x) = -x² + 6x - 5</code>:</p>
-                <ol style="margin: 0.5rem 0 0 0; padding-left: 1.2rem; font-size: 0.95rem; color: #cbd5e1;">
-                    <li>Identificamos <code>a = -1</code> (como a < 0, ela sobe primeiro e desce depois).</li>
-                    <li>Calculamos o divisor: <code>X_v = -6 / (2 · -1) = 3</code>.</li>
-                    <li><strong>Conclusão:</strong> Crescente em <code>(-∞, 3]</code> e Decrescente em <code>[3, +∞)</code>.</li>
-                </ol>
-            </div>
-
-            <!-- Calculadora do Eixo de Simetria / Crescimento -->
             <div class="exercise-box">
                 <h4>🧠 Analisador de Monotonia:</h4>
-                <p style="font-size: 0.95rem;">Insira valores para saber onde a função sobe ou desce:</p>
-                
                 <div style="display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap;">
                     <input type="number" id="mono-a" placeholder="a" value="-1" style="width: 70px; padding: 8px; border-radius: 6px; border: 1px solid #334155; background: #090d16; color: white;">
                     <input type="number" id="mono-b" placeholder="b" value="6" style="width: 70px; padding: 8px; border-radius: 6px; border: 1px solid #334155; background: #090d16; color: white;">
@@ -718,7 +759,6 @@
         const totalPages = 8;
         let isAppStarted = false;
 
-        // Iniciar aplicação na tela de apresentação
         function startApp() {
             const intro = document.getElementById('intro-screen');
             intro.style.opacity = '0';
@@ -728,7 +768,6 @@
             }, 800);
         }
 
-        // Alternar páginas por índice
         function switchPage(pageIndex) {
             if (pageIndex < 0 || pageIndex >= totalPages) return;
 
@@ -739,7 +778,7 @@
             pages.forEach((page, index) => {
                 if (index === currentPageIndex) {
                     page.classList.remove('active');
-                    void page.offsetWidth; // Recálculo da animação (Reflow)
+                    void page.offsetWidth;
                     page.classList.add('active');
                 } else {
                     page.classList.remove('active');
@@ -757,7 +796,6 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // NAVEGAÇÃO PELAS SETAS DO TECLADO
         document.addEventListener('keydown', function(event) {
             if (!isAppStarted) {
                 if (event.key === 'Enter' || event.key === ' ') {
@@ -777,7 +815,6 @@
             }
         });
 
-        // Revelar e Ocultar respostas nos exercícios
         function toggleAnswer(btn) {
             const answer = btn.nextElementSibling;
             if (answer.style.display === "block") {
@@ -791,7 +828,6 @@
             }
         }
 
-        // Calculadora do Conjunto Imagem (Página 7)
         function calcularImagemSimulada() {
             const a = parseFloat(document.getElementById('img-a').value);
             const b = parseFloat(document.getElementById('img-b').value);
@@ -813,7 +849,6 @@
             }
         }
 
-        // Calculadora de Monotonia (Página 8)
         function analisarMonotonia() {
             const a = parseFloat(document.getElementById('mono-a').value);
             const b = parseFloat(document.getElementById('mono-b').value);

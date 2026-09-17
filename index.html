@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MathLab - Função Quadrática</title>
+    <title>MathLab - Função Quadrática Pro</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,6 +16,8 @@
             --primary: #38bdf8;
             --secondary: #818cf8;
             --accent: #f43f5e;
+            --success: #10b981;
+            --warning: #f59e0b;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --math-font: 'Fira Code', monospace;
@@ -41,7 +43,6 @@
             min-height: 100vh;
         }
 
-        /* ESTILO DOS VÍDEOS EMBUTIDOS */
         .video-container {
             position: relative;
             width: 100%;
@@ -59,7 +60,6 @@
             border: 0;
         }
 
-        /* ANIMATED INTRO SCREEN */
         #intro-screen {
             position: fixed;
             top: 0;
@@ -129,7 +129,6 @@
             50% { filter: drop-shadow(0 0 25px rgba(244, 63, 94, 0.5)); }
         }
 
-        /* NAVIGATION & HEADER */
         header {
             text-align: center;
             padding: 2rem 1rem 1rem 1rem;
@@ -188,7 +187,6 @@
             box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
         }
 
-        /* PAGES & ANIMATIONS */
         main {
             max-width: 850px;
             margin: 2rem auto;
@@ -377,6 +375,26 @@
             cursor: not-allowed;
         }
 
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.2rem;
+        }
+
+        .info-card h3 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
         footer {
             text-align: center;
             padding: 2rem;
@@ -387,7 +405,6 @@
 </head>
 <body>
 
-    <!-- TELA DE ABERTURA -->
     <div id="intro-screen">
         <div class="intro-title">f(x) = ax² + bx + c</div>
         <div class="intro-subtitle">Módulo Interativo: Estudo da Função Quadrática</div>
@@ -395,12 +412,10 @@
         <div class="keyboard-hint">💡 Dica: Use as setas do teclado (← / →) para navegar pelas páginas</div>
     </div>
 
-    <!-- CABEÇALHO -->
     <header>
         <h1>MathLab: Função 2º Grau</h1>
     </header>
 
-    <!-- NAVEGAÇÃO -->
     <nav>
         <ul>
             <li><button class="tab-btn active" onclick="switchPage(0)">1. Definição</button></li>
@@ -414,33 +429,51 @@
         </ul>
     </nav>
 
-    <!-- PÁGINAS DA APLICAÇÃO -->
     <main>
         <!-- PÁGINA 1 -->
         <div class="page active anim-fade-up">
             <h2>📌 1. Definição da Função Quadrática</h2>
-            <p>Uma função é dita <strong>quadrática</strong> (ou do 2º grau) quando é escrita sob a seguinte forma algébrica:</p>
-            <div class="formula">f(x) = ax² + bx + c &nbsp;&nbsp;&nbsp;&nbsp;(com a ≠ 0)</div>
+            <p>Uma função é dita <strong>quadrática</strong> (ou polinomial do 2º grau) quando sua lei de formação pode ser expressa como:</p>
             
-            <!-- VÍDEO PÁGINAS 1 E 2 -->
+            <div class="formula">f(x) = ax² + bx + c &nbsp;&nbsp;&nbsp;&nbsp;(com a, b, c ∈ ℝ e a ≠ 0)</div>
+
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/HYWdb_3TnmA" title="Definição e Gráfico da Função Quadrática" allowfullscreen></iframe>
             </div>
 
-            <ul>
-                <li><strong>a:</strong> Coeficiente principal (define a concavidade). Não pode ser zero!</li>
-                <li><strong>b:</strong> Coeficiente do termo linear (grau 1).</li>
-                <li><strong>c:</strong> Termo independente (ponto de intersecção com o eixo Y).</li>
-            </ul>
+            <div class="grid-cards">
+                <div class="info-card">
+                    <h3>a (Coeficiente Principal)</h3>
+                    <p style="font-size: 0.95rem;">Determina a curvatura da parábola. <strong>Nunca pode ser zero</strong>, pois anularia o termo quadrático, transformando a função em linear.</p>
+                </div>
+                <div class="info-card">
+                    <h3>b (Coeficiente Linear)</h3>
+                    <p style="font-size: 0.95rem;">Determina a inclinação com que a curva corta o eixo Y (se subindo ou descendo). Pode ser igual a zero.</p>
+                </div>
+                <div class="info-card">
+                    <h3>c (Termo Independente)</h3>
+                    <p style="font-size: 0.95rem;">É a ordenada do ponto onde o gráfico intercepta o eixo Y: <code>(0, c)</code>. Pode ser zero.</p>
+                </div>
+            </div>
 
             <div class="exercise-box">
-                <h4>🧠 Desafio de Identificação:</h4>
-                <p>Identifique os coeficientes da função <code>f(x) = -2x² + 4x - 7</code>:</p>
+                <h4>🧪 Tipos de Funções (Completas e Incompletas):</h4>
+                <ul>
+                    <li><code>f(x) = 3x² - 5x + 2</code> ➔ <strong>Completa</strong> (a = 3, b = -5, c = 2)</li>
+                    <li><code>f(x) = -x² + 9</code> ➔ <strong>Incompleta</strong> (a = -1, b = 0, c = 9)</li>
+                    <li><code>f(x) = 4x² - 8x</code> ➔ <strong>Incompleta</strong> (a = 4, b = -8, c = 0)</li>
+                </ul>
+            </div>
+
+            <div class="exercise-box">
+                <h4>🧠 Desafio Prático:</h4>
+                <p>Quais são os coeficientes de <code>f(x) = 5 - x² + 2x</code>?</p>
                 <button class="toggle-btn" onclick="toggleAnswer(this)">Revelar Resposta</button>
                 <div class="answer-content">
-                    a = -2 <br>
-                    b = 4 <br>
-                    c = -7
+                    Organizando na ordem correta (-x² + 2x + 5):<br>
+                    • <strong>a = -1</strong><br>
+                    • <strong>b = 2</strong><br>
+                    • <strong>c = 5</strong>
                 </div>
             </div>
 
@@ -453,27 +486,42 @@
         <!-- PÁGINA 2 -->
         <div class="page anim-slide-left">
             <h2>📈 2. Gráfico (A Parábola)</h2>
-            <p>O gráfico de uma função quadrática é sempre uma curva simétrica chamada <strong>parábola</strong>.</p>
+            <p>O gráfico de toda função quadrática é uma curva contínua e simétrica chamada <strong>parábola</strong>.</p>
             
-            <!-- VÍDEO PÁGINAS 1 E 2 -->
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/HYWdb_3TnmA" title="Gráfico da Função Quadrática" allowfullscreen></iframe>
             </div>
 
-            <p>A orientação da sua curvatura é determinada exclusivamente pelo sinal do coeficiente <strong>a</strong>:</p>
-            <ul>
-                <li><strong>Se a > 0:</strong> Concavidade voltada para <strong>CIMA</strong> ◡ (Sorriso).</li>
-                <li><strong>Se a < 0:</strong> Concavidade voltada para <strong>BAIXO</strong> ◠ (Triste).</li>
-            </ul>
-            <p><strong>Cruzamento no eixo Y:</strong> A curva sempre intercepta o eixo vertical no ponto <code>(0, c)</code>.</p>
+            <div class="grid-cards">
+                <div class="info-card" style="border-top: 4px solid var(--primary);">
+                    <h3>a > 0 (Positivo)</h3>
+                    <p>Concavidade voltada para <strong>CIMA</strong> ◡</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">A curva possui um ponto de valor mínimo.</p>
+                </div>
+                <div class="info-card" style="border-top: 4px solid var(--accent);">
+                    <h3>a < 0 (Negativo)</h3>
+                    <p>Concavidade voltada para <strong>BAIXO</strong> ◠</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">A curva possui um ponto de valor máximo.</p>
+                </div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.4); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,0.1);">
+                <h3 style="margin-top:0; color: var(--secondary);">🔍 O papel do coeficiente b no gráfico:</h3>
+                <ul>
+                    <li><strong>b > 0:</strong> A parábola cruza o eixo Y <strong>subindo</strong>.</li>
+                    <li><strong>b < 0:</strong> A parábola cruza o eixo Y <strong>descendo</strong>.</li>
+                    <li><strong>b = 0:</strong> O próprio eixo Y é o eixo de simetria da parábola (o vértice fica no eixo Y).</li>
+                </ul>
+            </div>
 
             <div class="exercise-box">
-                <h4>🧠 Exercício Prático:</h4>
-                <p>O gráfico da função <code>f(x) = -x² + 3x + 5</code> tem a concavidade para cima ou para baixo? Onde corta o eixo Y?</p>
+                <h4>🧠 Exercício de Análise Visual:</h4>
+                <p>Na função <code>f(x) = 2x² - 4x - 6</code>, qual o comportamento da curva no eixo Y?</p>
                 <button class="toggle-btn" onclick="toggleAnswer(this)">Revelar Resposta</button>
                 <div class="answer-content">
-                    • Concavidade para <strong>BAIXO</strong> (pois a = -1 < 0).<br>
-                    • Corta o eixo Y no ponto <strong>(0, 5)</strong>.
+                    • Como <strong>a = 2 (> 0)</strong>, concavidade para cima.<br>
+                    • Como <strong>b = -4 (< 0)</strong>, cruza o eixo Y descendo.<br>
+                    • Como <strong>c = -6</strong>, intercepta o eixo Y exatamente no ponto <strong>(0, -6)</strong>.
                 </div>
             </div>
 
@@ -486,33 +534,44 @@
         <!-- PÁGINA 3 -->
         <div class="page anim-slide-right">
             <h2>🎯 3. Zeros (Raízes) da Função</h2>
-            <p>Os zeros são os valores de <code>x</code> para os quais <code>f(x) = 0</code>. Correspondem aos pontos em que a curva cruza o eixo X.</p>
+            <p>Os zeros ou raízes de uma função quadrática são os valores de $x$ que tornam $f(x) = 0$. Geometricamente, são as coordenadas onde a parábola cruza o eixo horizontal $X$.</p>
             
-            <!-- VÍDEO PÁGINA 3 -->
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/hb0o3f6yDCk" title="Zeros da Função Quadrática" allowfullscreen></iframe>
             </div>
 
             <div class="formula">
-                Δ = b² - 4ac<br><br>
-                x = (-b ± √Δ) / (2a)
+                1º Passo: Calcula-se o Discriminante (Δ)<br>
+                <strong>Δ = b² - 4ac</strong><br><br>
+                2º Passo: Aplica-se a Fórmula de Bhaskara<br>
+                <strong>x = (-b ± √Δ) / (2a)</strong>
             </div>
-            <p><strong>Comportamento do Discriminante (Δ):</strong></p>
-            <ul>
-                <li><strong>Δ > 0:</strong> Duas raízes reais e distintas (cruza o eixo X em 2 pontos).</li>
-                <li><strong>Δ = 0:</strong> Duas raízes reais e iguais (toca o eixo X em 1 ponto).</li>
-                <li><strong>Δ < 0:</strong> Não possui raízes reais (não toca o eixo X).</li>
-            </ul>
+
+            <div class="grid-cards">
+                <div class="info-card" style="border-left: 4px solid var(--success);">
+                    <h3>Δ > 0</h3>
+                    <p style="font-size: 0.9rem;"><strong>2 Raízes Reais e Distintas</strong><br>A parábola corta o eixo X em dois pontos distintos.</p>
+                </div>
+                <div class="info-card" style="border-left: 4px solid var(--warning);">
+                    <h3>Δ = 0</h3>
+                    <p style="font-size: 0.9rem;"><strong>2 Raízes Reais e Iguais</strong><br>A parábola tangencia (toca em apenas 1 ponto) o eixo X.</p>
+                </div>
+                <div class="info-card" style="border-left: 4px solid var(--accent);">
+                    <h3>Δ < 0</h3>
+                    <p style="font-size: 0.9rem;"><strong>Nenhuma Raiz Real</strong><br>A parábola flutua sem tocar o eixo X.</p>
+                </div>
+            </div>
 
             <div class="exercise-box">
-                <h4>🧠 Calcule as Raízes:</h4>
-                <p>Encontre as raízes da função <code>f(x) = x² - 5x + 6</code>.</p>
+                <h4>🧠 Exercício Passo a Passo:</h4>
+                <p>Encontre as raízes de <code>f(x) = x² - 6x + 8</code>.</p>
                 <button class="toggle-btn" onclick="toggleAnswer(this)">Revelar Resposta</button>
                 <div class="answer-content">
-                    Δ = (-5)² - 4(1)(6) = 25 - 24 = 1<br>
-                    x = (5 ± √1) / 2<br>
-                    x₁ = (5 + 1)/2 = <strong>3</strong><br>
-                    x₂ = (5 - 1)/2 = <strong>2</strong>
+                    1. Identificar coeficientes: a = 1, b = -6, c = 8<br>
+                    2. Δ = (-6)² - 4(1)(8) = 36 - 32 = 4 (Δ > 0, duas raízes)<br>
+                    3. x = (-(-6) ± √4) / (2·1) = (6 ± 2) / 2<br>
+                    • x₁ = (6 + 2)/2 = <strong>4</strong><br>
+                    • x₂ = (6 - 2)/2 = <strong>2</strong>
                 </div>
             </div>
 
@@ -525,26 +584,31 @@
         <!-- PÁGINA 4 -->
         <div class="page anim-zoom-in">
             <h2>➕✖️ 4. Soma e Produto das Raízes</h2>
-            <p>Método ágil para descobrir raízes inteiras sem utilizar a Fórmula de Bhaskara para a equação <code>ax² + bx + c = 0</code>:</p>
+            <p>O método de Relações de Girard permite determinar as raízes mentalmente sem necessitar da Fórmula de Bhaskara para equações do tipo $ax^2 + bx + c = 0$.</p>
             
-            <!-- VÍDEO PÁGINA 4 -->
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/gZdb8S9zJMQ" title="Soma e Produto das Raízes" allowfullscreen></iframe>
             </div>
 
             <div class="formula">
-                Soma (x₁ + x₂) = -b / a<br>
-                Produto (x₁ · x₂) = c / a
+                Soma das Raízes (S) = x₁ + x₂ = -b / a<br>
+                Produto das Raízes (P) = x₁ · x₂ = c / a
+            </div>
+
+            <div style="background: rgba(56, 189, 248, 0.05); padding: 1.2rem; border-radius: 12px; border: 1px solid rgba(56, 189, 248, 0.2); margin: 1.5rem 0;">
+                <h3 style="margin-top: 0; color: var(--primary);">💡 Dica para quando a = 1:</h3>
+                <p style="margin-bottom: 0;">A equação fica na forma <code>x² - Sx + P = 0</code>. Procuram-se dois números que multiplicados resultem em <strong>c</strong> e somados resultem no oposto de <strong>b</strong>.</p>
             </div>
 
             <div class="exercise-box">
-                <h4>🧠 Desafio Mental:</h4>
-                <p>Determine a soma e o produto das raízes de <code>f(x) = x² - 7x + 10</code> e encontre os valores de x₁ e x₂.</p>
+                <h4>🧠 Desafio de Raciocínio Rápido:</h4>
+                <p>Descubra as raízes de <code>f(x) = x² - 9x + 20</code> por Soma e Produto.</p>
                 <button class="toggle-btn" onclick="toggleAnswer(this)">Revelar Resposta</button>
                 <div class="answer-content">
-                    Soma = -(-7)/1 = 7<br>
-                    Produto = 10/1 = 10<br>
-                    Dois números que somam 7 e multiplicam 10 ➔ <strong>x₁ = 2 e x₂ = 5</strong>
+                    • Soma (S) = -(-9)/1 = <strong>9</strong><br>
+                    • Produto (P) = 20/1 = <strong>20</strong><br>
+                    Procurando dois números que somam 9 e multiplicam 20:<br>
+                    ➔ <strong>x₁ = 4 e x₂ = 5</strong>
                 </div>
             </div>
 
@@ -557,27 +621,38 @@
         <!-- PÁGINA 5 -->
         <div class="page anim-flip-3d">
             <h2>📍 5. Vértice da Parábola</h2>
-            <p>O vértice <code>V(Xv, Yv)</code> é o ponto de curvatura máxima ou mínima da função.</p>
+            <p>O vértice $V(X_v, Y_v)$ representa o ponto onde a função muda seu sentido (de decrescente para crescente ou vice-versa).</p>
             
-            <!-- VÍDEO PÁGINAS 5 E 6 (NOVO VÍDEO ATUALIZADO) -->
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/9Ovd2Pvx42I" title="Vértice da Parábola e Ponto de Máximo e Mínimo" allowfullscreen></iframe>
             </div>
 
             <div class="formula">
-                X_v = -b / (2a)<br>
-                Y_v = -Δ / (4a)
+                Coordenada X do Vértice: &nbsp; X_v = -b / (2a)<br><br>
+                Coordenada Y do Vértice: &nbsp; Y_v = -Δ / (4a)
+            </div>
+
+            <div class="grid-cards">
+                <div class="info-card">
+                    <h3>X do Vértice (Xv)</h3>
+                    <p style="font-size: 0.9rem;">Indica o ponto no eixo X onde ocorre o valor extremo. Corresponde à média aritmética das raízes: <code>(x₁ + x₂)/2</code>.</p>
+                </div>
+                <div class="info-card">
+                    <h3>Y do Vértice (Yv)</h3>
+                    <p style="font-size: 0.9rem;">Indica o valor extremo em si (a altura máxima ou mínima) atingida pela função no eixo Y.</p>
+                </div>
             </div>
 
             <div class="exercise-box">
-                <h4>🧠 Exercício do Vértice:</h4>
-                <p>Ache o ponto do vértice V(Xv, Yv) da função <code>f(x) = x² - 2x - 3</code>.</p>
+                <h4>🧠 Exercício Guiado:</h4>
+                <p>Ache o vértice V(Xv, Yv) de <code>f(x) = 2x² - 8x + 6</code>.</p>
                 <button class="toggle-btn" onclick="toggleAnswer(this)">Revelar Resposta</button>
                 <div class="answer-content">
-                    X_v = -(-2) / (2·1) = 2 / 2 = 1<br>
-                    Δ = (-2)² - 4(1)(-3) = 4 + 12 = 16<br>
-                    Y_v = -16 / (4·1) = -4<br>
-                    <strong>Vértice V = (1, -4)</strong>
+                    1. Coeficientes: a = 2, b = -8, c = 6<br>
+                    2. X_v = -(-8) / (2·2) = 8 / 4 = <strong>2</strong><br>
+                    3. Δ = (-8)² - 4(2)(6) = 64 - 48 = 16<br>
+                    4. Y_v = -16 / (4·2) = -16 / 8 = <strong>-2</strong><br>
+                    ➔ <strong>Vértice V = (2, -2)</strong>
                 </div>
             </div>
 
@@ -590,27 +665,34 @@
         <!-- PÁGINA 6 -->
         <div class="page anim-bounce">
             <h2>🔝 6. Valor Máximo e Mínimo</h2>
-            <p>O valor extremo da função é o próprio valor de <code>Y_v</code>:</p>
+            <p>Os valores de máximo e mínimo são essenciais em problemas de otimização (área máxima, custo mínimo, lucro máximo).</p>
 
-            <!-- VÍDEO PÁGINAS 5 E 6 (NOVO VÍDEO ATUALIZADO) -->
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/9Ovd2Pvx42I" title="Valor Máximo e Mínimo da Função Quadrática" allowfullscreen></iframe>
             </div>
 
-            <ul>
-                <li>Se <strong>a > 0</strong>: A parábola tem um <strong>Valor MÍNIMO</strong> (no ponto Y_v).</li>
-                <li>Se <strong>a < 0</strong>: A parábola tem um <strong>Valor MÁXIMO</strong> (no ponto Y_v).</li>
-            </ul>
+            <div class="grid-cards">
+                <div class="info-card" style="border-top: 4px solid var(--primary);">
+                    <h3>Ponto de MÍNIMO (a > 0)</h3>
+                    <p>O valor mínimo da função é <strong>Y_v = -Δ / (4a)</strong> e ocorre na posição <strong>X_v = -b / (2a)</strong>.</p>
+                </div>
+                <div class="info-card" style="border-top: 4px solid var(--accent);">
+                    <h3>Ponto de MÁXIMO (a < 0)</h3>
+                    <p>O valor máximo da função é <strong>Y_v = -Δ / (4a)</strong> e ocorre na posição <strong>X_v = -b / (2a)</strong>.</p>
+                </div>
+            </div>
 
-            <div class="exercise-box">
-                <h4>🧠 Aplicação:</h4>
-                <p>Uma empresa tem seu lucro dado por <code>L(x) = -x² + 6x - 5</code>. Qual o lucro máximo atingido?</p>
+            <div class="exercise-box" style="border-color: var(--warning);">
+                <h4>📦 Aplicação Prática:</h4>
+                <p>A trajetória de um projétil é modelada por <code>h(t) = -5t² + 20t</code>, onde <code>h</code> é a altura em metros e <code>t</code> o tempo em segundos.</p>
+                <p><strong>Perguntas:</strong> a) Qual a altura máxima atingida? b) Em quanto tempo atinge essa altura?</p>
                 <button class="toggle-btn" onclick="toggleAnswer(this)">Revelar Resposta</button>
                 <div class="answer-content">
-                    Lucro Máximo é o Y_v:<br>
-                    Δ = 6² - 4(-1)(-5) = 36 - 20 = 16<br>
-                    Y_v = -16 / (4 · (-1)) = 4<br>
-                    <strong>Lucro Máximo = 4 unidades financeiras.</strong>
+                    • a) A altura máxima é o <strong>Y_v</strong>:<br>
+                    Δ = 20² - 4(-5)(0) = 400<br>
+                    Y_v = -400 / (4 · (-5)) = <strong>20 metros</strong>.<br><br>
+                    • b) O tempo para atingir a altura máxima é o <strong>X_v</strong>:<br>
+                    X_v = -20 / (2 · (-5)) = <strong>2 segundos</strong>.
                 </div>
             </div>
 
@@ -623,58 +705,32 @@
         <!-- PÁGINA 7 -->
         <div class="page anim-rotate-in">
             <h2>📊 7. Conjunto Imagem Im(f)</h2>
-            <p>O <strong>Conjunto Imagem</strong> representa todos os valores de <code>y</code> (eixo vertical) que a função atinge. Seu limite inicial ou final é sempre o <strong>Y_v (Y do Vértice)</strong>.</p>
+            <p>O <strong>Conjunto Imagem</strong> representa todos os valores de <code>y</code> que a função atinge. Seu limite inicial ou final é sempre o <strong>Y_v (Y do Vértice)</strong>.</p>
             
-            <!-- VÍDEO PÁGINAS 7 E 8 -->
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/APcGeLB1Q7k" title="Conjunto Imagem e Estudo do Crescimento" allowfullscreen></iframe>
             </div>
 
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 1.5rem 0;">
-                
-                <!-- Caso a > 0 -->
                 <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(56, 189, 248, 0.3); padding: 1.2rem; border-radius: 12px; text-align: center;">
                     <span style="background: var(--primary); color: #0b0f19; padding: 4px 10px; border-radius: 20px; font-weight: bold; font-size: 0.85rem;">Caso a > 0</span>
                     <h4 style="margin: 0.8rem 0; color: var(--primary);">Existe Valor Mínimo</h4>
-                    
-                    <svg viewBox="0 0 160 120" style="width: 100%; max-width: 160px; height: auto;">
-                        <line x1="20" y1="100" x2="140" y2="100" stroke="#94a3b8" stroke-width="1.5"/>
-                        <line x1="40" y1="10" x2="40" y2="110" stroke="#94a3b8" stroke-width="1.5"/>
-                        <path d="M 50 20 Q 80 90 110 20" fill="none" stroke="#38bdf8" stroke-width="3"/>
-                        <circle cx="80" cy="55" r="4" fill="#f43f5e"/>
-                        <line x1="40" y1="55" x2="80" y2="55" stroke="#f43f5e" stroke-dasharray="3,3"/>
-                        <text x="15" y="58" fill="#f43f5e" font-size="10" font-family="sans-serif">Yv</text>
-                    </svg>
-
                     <div class="formula" style="font-size: 1rem; margin: 0.8rem 0; padding: 0.6rem;">
                         Im(f) = [ Y_v , +∞ )<br>
                         { y ∈ ℝ | y ≥ Y_v }
                     </div>
                 </div>
 
-                <!-- Caso a < 0 -->
                 <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(244, 63, 94, 0.3); padding: 1.2rem; border-radius: 12px; text-align: center;">
                     <span style="background: var(--accent); color: #ffffff; padding: 4px 10px; border-radius: 20px; font-weight: bold; font-size: 0.85rem;">Caso a < 0</span>
                     <h4 style="margin: 0.8rem 0; color: var(--accent);">Existe Valor Máximo</h4>
-                    
-                    <svg viewBox="0 0 160 120" style="width: 100%; max-width: 160px; height: auto;">
-                        <line x1="20" y1="100" x2="140" y2="100" stroke="#94a3b8" stroke-width="1.5"/>
-                        <line x1="40" y1="10" x2="40" y2="110" stroke="#94a3b8" stroke-width="1.5"/>
-                        <path d="M 50 90 Q 80 20 110 90" fill="none" stroke="#f43f5e" stroke-width="3"/>
-                        <circle cx="80" cy="55" r="4" fill="#38bdf8"/>
-                        <line x1="40" y1="55" x2="80" y2="55" stroke="#38bdf8" stroke-dasharray="3,3"/>
-                        <text x="15" y="58" fill="#38bdf8" font-size="10" font-family="sans-serif">Yv</text>
-                    </svg>
-
                     <div class="formula" style="font-size: 1rem; margin: 0.8rem 0; padding: 0.6rem; border-left-color: var(--accent);">
                         Im(f) = ( -∞ , Y_v ]<br>
                         { y ∈ ℝ | y ≤ Y_v }
                     </div>
                 </div>
-
             </div>
 
-            <!-- Calculadora Interativa da Imagem -->
             <div class="exercise-box" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--secondary);">
                 <h4 style="color: var(--primary);">🧮 Simulador de Imagem em Tempo Real:</h4>
                 <div style="display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap;">
@@ -700,7 +756,6 @@
             <h2>📉📈 8. Crescimento e Decrescimento</h2>
             <p>A direção da curva altera-se exatamente no ponto <strong>X_v (X do Vértice)</strong>. Ele funciona como o divisor dos intervalos da função:</p>
 
-            <!-- VÍDEO PÁGINAS 7 E 8 -->
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/APcGeLB1Q7k" title="Estudo da Monotonia e Crescimento" allowfullscreen></iframe>
             </div>
@@ -709,7 +764,6 @@
                 <h3 style="margin-top: 0; color: var(--secondary); font-size: 1.2rem;">Comportamento nos Intervalos:</h3>
                 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 1rem;">
-                    
                     <div style="background: #030712; padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary);">
                         <strong style="color: var(--primary);">Se a > 0 (Sorriso ◡):</strong>
                         <ul style="padding-left: 1.2rem; margin: 0.5rem 0 0 0; font-size: 0.95rem;">
@@ -725,7 +779,6 @@
                             <li>📉 <strong>Decrescente:</strong> no intervalo [ X_v , +∞ )</li>
                         </ul>
                     </div>
-
                 </div>
             </div>
 
@@ -750,10 +803,9 @@
     </main>
 
     <footer>
-        <p>⚡ MathLab - Utilização com suporte a navegação pelas setas do teclado</p>
+        <p>⚡ MathLab - Módulo de Estudo Interativo de Matemática</p>
     </footer>
 
-    <!-- LÓGICA EM JAVASCRIPT -->
     <script>
         let currentPageIndex = 0;
         const totalPages = 8;

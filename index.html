@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MathLab - Função Quadrática Pro</title>
+    <title>MathLab Pro - Função Quadrática</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Plus+Jakarta+Sans:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: rgba(23, 32, 54, 0.85);
+            --bg-color: #030712;
+            --card-bg: rgba(15, 23, 42, 0.75);
             --primary: #38bdf8;
             --secondary: #818cf8;
             --accent: #f43f5e;
@@ -21,6 +21,7 @@
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --math-font: 'Fira Code', monospace;
+            --glass-border: rgba(255, 255, 255, 0.12);
         }
 
         * {
@@ -29,29 +30,138 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-            background-size: 35px 35px;
-            background-position: -1px -1px;
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(129, 140, 248, 0.12) 0%, transparent 40%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
+            background-position: 0 0, 0 0, -1px -1px, -1px -1px;
             min-height: 100vh;
         }
 
+        /* --- TELA INICIAL CYBER/GLASS --- */
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #030712;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: opacity 0.8s ease, visibility 0.8s;
+            overflow: hidden;
+        }
+
+        /* Esferas de Luz no Fundo da Intro */
+        .intro-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: floatBlob 10s infinite alternate ease-in-out;
+        }
+        .blob-1 { width: 350px; height: 350px; background: var(--primary); top: 10%; left: 15%; }
+        .blob-2 { width: 400px; height: 400px; background: var(--secondary); bottom: 10%; right: 15%; animation-delay: -5s; }
+        .blob-3 { width: 250px; height: 250px; background: var(--accent); top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.3; }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, -40px) scale(1.15); }
+        }
+
+        .intro-card {
+            position: relative;
+            z-index: 2;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            padding: 3.5rem 2.5rem;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            max-width: 600px;
+            width: 90%;
+        }
+
+        .intro-tag {
+            display: inline-block;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-title {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ffffff 30%, var(--primary) 70%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            font-family: var(--math-font);
+        }
+
+        .intro-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #030712;
+            border: none;
+            padding: 18px 48px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 0 50px rgba(129, 140, 248, 0.7);
+        }
+
+        .keyboard-hint {
+            margin-top: 1.8rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: var(--math-font);
+        }
+
+        /* --- CONTAINER E NAVEGAÇÃO --- */
         .video-container {
             position: relative;
             width: 100%;
             aspect-ratio: 16 / 9;
             margin: 1.5rem 0;
-            border-radius: 12px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid var(--glass-border);
         }
 
         .video-container iframe {
@@ -60,95 +170,29 @@
             border: 0;
         }
 
-        #intro-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at center, #1e1b4b 0%, #090d16 100%);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            transition: opacity 0.8s ease, visibility 0.8s;
-        }
-
-        .intro-title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            animation: pulseText 3s infinite ease-in-out;
-        }
-
-        .intro-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            font-family: var(--math-font);
-        }
-
-        .start-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: #0b0f19;
-            border: none;
-            padding: 16px 40px;
-            font-size: 1.2rem;
-            font-weight: 800;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .start-btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 0 40px rgba(129, 140, 248, 0.8);
-        }
-
-        .keyboard-hint {
-            margin-top: 1.5rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-family: var(--math-font);
-            background: rgba(255, 255, 255, 0.05);
-            padding: 6px 14px;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        @keyframes pulseText {
-            0%, 100% { filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.3)); }
-            50% { filter: drop-shadow(0 0 25px rgba(244, 63, 94, 0.5)); }
-        }
-
         header {
             text-align: center;
             padding: 2rem 1rem 1rem 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         header h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin: 0;
-            color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             font-family: var(--math-font);
+            font-weight: 800;
         }
 
         nav {
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(11, 15, 25, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--glass-border);
             padding: 0.8rem 0;
         }
 
@@ -163,11 +207,11 @@
         }
 
         nav button {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             color: var(--text-muted);
             padding: 8px 16px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 0.85rem;
             font-weight: 600;
             cursor: pointer;
@@ -177,137 +221,78 @@
         nav button:hover {
             color: var(--text-main);
             border-color: var(--primary);
+            background: rgba(56, 189, 248, 0.05);
         }
 
         nav button.active {
-            background: var(--primary);
-            color: #0b0f19;
-            border-color: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #030712;
+            border-color: transparent;
             font-weight: 800;
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
         }
 
         main {
-            max-width: 850px;
+            max-width: 900px;
             margin: 2rem auto;
             padding: 0 1.5rem;
             min-height: 500px;
-            perspective: 1000px;
         }
 
         .page {
             display: none;
             background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
             padding: 2.5rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
-        .page.active.anim-fade-up {
+        .page.active {
             display: block;
-            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
+            animation: pageFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .page.active.anim-slide-left {
-            display: block;
-            animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-80px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .page.active.anim-slide-right {
-            display: block;
-            animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(80px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .page.active.anim-zoom-in {
-            display: block;
-            animation: zoomIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .page.active.anim-flip-3d {
-            display: block;
-            animation: flip3D 0.7s ease forwards;
-            backface-visibility: hidden;
-        }
-        @keyframes flip3D {
-            from { opacity: 0; transform: rotateY(-70deg); }
-            to { opacity: 1; transform: rotateY(0deg); }
-        }
-
-        .page.active.anim-bounce {
-            display: block;
-            animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-        }
-        @keyframes bounceIn {
-            from { opacity: 0; transform: translateY(-40px) scale(0.95); }
+        @keyframes pageFadeIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
             to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .page.active.anim-rotate-in {
-            display: block;
-            animation: rotateIn 0.6s ease forwards;
-        }
-        @keyframes rotateIn {
-            from { opacity: 0; transform: rotate(-5deg) translateY(30px); }
-            to { opacity: 1; transform: rotate(0deg) translateY(0); }
-        }
-
-        .page.active.anim-slide-down {
-            display: block;
-            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-60px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         h2 {
             font-size: 1.8rem;
             color: var(--primary);
             margin-top: 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
             padding-bottom: 0.8rem;
         }
 
         p, li {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: #cbd5e1;
             line-height: 1.8;
         }
 
         .formula {
             font-family: var(--math-font);
-            background: #030712;
+            background: #010409;
             border-left: 4px solid var(--secondary);
             padding: 1.2rem;
-            border-radius: 8px;
+            border-radius: 12px;
             color: var(--primary);
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             margin: 1.5rem 0;
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.8);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-right: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
         .exercise-box {
-            background: rgba(3, 7, 18, 0.6);
-            border: 1px dashed rgba(255, 255, 255, 0.2);
+            background: rgba(1, 4, 9, 0.6);
+            border: 1px dashed rgba(255, 255, 255, 0.15);
             padding: 1.5rem;
-            border-radius: 12px;
+            border-radius: 16px;
             margin-top: 2rem;
         }
 
@@ -321,12 +306,12 @@
             background: linear-gradient(135deg, var(--secondary), #6366f1);
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 22px;
             font-size: 0.95rem;
             font-weight: 700;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             margin-top: 0.5rem;
         }
 
@@ -338,10 +323,10 @@
         .answer-content {
             display: none;
             margin-top: 1rem;
-            padding: 1rem;
-            background: rgba(16, 185, 129, 0.1);
+            padding: 1.2rem;
+            background: rgba(16, 185, 129, 0.08);
             border-left: 3px solid #10b981;
-            border-radius: 4px;
+            border-radius: 8px;
             color: #a7f3d0;
             font-family: var(--math-font);
         }
@@ -351,15 +336,15 @@
             justify-content: space-between;
             margin-top: 2.5rem;
             padding-top: 1.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .nav-btn {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: var(--text-main);
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 12px 24px;
+            border-radius: 12px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -367,26 +352,28 @@
 
         .nav-btn:hover:not(:disabled) {
             background: var(--primary);
-            color: #0b0f19;
+            color: #030712;
+            border-color: var(--primary);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
         }
 
         .nav-btn:disabled {
-            opacity: 0.3;
+            opacity: 0.2;
             cursor: not-allowed;
         }
 
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1rem;
+            gap: 1.2rem;
             margin: 1.5rem 0;
         }
 
         .info-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 1.4rem;
         }
 
         .info-card h3 {
@@ -395,27 +382,119 @@
             font-size: 1.1rem;
         }
 
+        /* --- PÁGINA 9 (EQUIPE) --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: rgba(1, 4, 9, 0.7);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2));
+            border: 2px solid var(--primary);
+            margin: 0 auto 1.2rem auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 800;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+        }
+
+        .team-card.leader .avatar {
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.3);
+        }
+
+        .team-card.leader::before {
+            background: linear-gradient(90deg, var(--accent), var(--secondary));
+        }
+
+        .team-name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+        }
+
+        .team-role {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: var(--math-font);
+        }
+
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 2.5rem;
             color: var(--text-muted);
             font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 3rem;
         }
     </style>
 </head>
 <body>
 
+    <!-- TELA INICIAL CYBER -->
     <div id="intro-screen">
-        <div class="intro-title">f(x) = ax² + bx + c</div>
-        <div class="intro-subtitle">Módulo Interativo: Estudo da Função Quadrática</div>
-        <button class="start-btn" onclick="startApp()">Começar Estudos 🚀</button>
-        <div class="keyboard-hint">💡 Dica: Use as setas do teclado (← / →) para navegar pelas páginas</div>
+        <div class="intro-blob blob-1"></div>
+        <div class="intro-blob blob-2"></div>
+        <div class="intro-blob blob-3"></div>
+
+        <div class="intro-card">
+            <span class="intro-tag">Módulo Didático Interativo</span>
+            <div class="intro-title">f(x) = ax² + bx + c</div>
+            <div class="intro-subtitle">Explore o estudo completo da Função Quadrática de forma visual, didática e prática.</div>
+            <button class="start-btn" onclick="startApp()">Iniciar Aprendizado 🚀</button>
+            <div class="keyboard-hint">⌨️ Navegue também pelas setas do teclado (← / →)</div>
+        </div>
     </div>
 
+    <!-- CABEÇALHO -->
     <header>
-        <h1>MathLab: Função 2º Grau</h1>
+        <h1>MathLab • Função 2º Grau</h1>
     </header>
 
+    <!-- MENU DE NAVEGAÇÃO -->
     <nav>
         <ul>
             <li><button class="tab-btn active" onclick="switchPage(0)">1. Definição</button></li>
@@ -426,12 +505,14 @@
             <li><button class="tab-btn" onclick="switchPage(5)">6. Máx/Mín</button></li>
             <li><button class="tab-btn" onclick="switchPage(6)">7. Imagem</button></li>
             <li><button class="tab-btn" onclick="switchPage(7)">8. Crescimento</button></li>
+            <li><button class="tab-btn" onclick="switchPage(8)" style="border-color: rgba(56, 189, 248, 0.4);">👥 9. Equipe</button></li>
         </ul>
     </nav>
 
+    <!-- CONTEÚDO PRINCIPAL -->
     <main>
         <!-- PÁGINA 1 -->
-        <div class="page active anim-fade-up">
+        <div class="page active">
             <h2>📌 1. Definição da Função Quadrática</h2>
             <p>Uma função é dita <strong>quadrática</strong> (ou polinomial do 2º grau) quando sua lei de formação pode ser expressa como:</p>
             
@@ -484,7 +565,7 @@
         </div>
 
         <!-- PÁGINA 2 -->
-        <div class="page anim-slide-left">
+        <div class="page">
             <h2>📈 2. Gráfico (A Parábola)</h2>
             <p>O gráfico de toda função quadrática é uma curva contínua e simétrica chamada <strong>parábola</strong>.</p>
             
@@ -505,7 +586,7 @@
                 </div>
             </div>
 
-            <div style="background: rgba(0,0,0,0.4); padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,0.1);">
+            <div style="background: rgba(1, 4, 9, 0.4); padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; border: 1px solid var(--glass-border);">
                 <h3 style="margin-top:0; color: var(--secondary);">🔍 O papel do coeficiente b no gráfico:</h3>
                 <ul>
                     <li><strong>b > 0:</strong> A parábola cruza o eixo Y <strong>subindo</strong>.</li>
@@ -532,7 +613,7 @@
         </div>
 
         <!-- PÁGINA 3 -->
-        <div class="page anim-slide-right">
+        <div class="page">
             <h2>🎯 3. Zeros (Raízes) da Função</h2>
             <p>Os zeros ou raízes de uma função quadrática são os valores de $x$ que tornam $f(x) = 0$. Geometricamente, são as coordenadas onde a parábola cruza o eixo horizontal $X$.</p>
             
@@ -582,7 +663,7 @@
         </div>
 
         <!-- PÁGINA 4 -->
-        <div class="page anim-zoom-in">
+        <div class="page">
             <h2>➕✖️ 4. Soma e Produto das Raízes</h2>
             <p>O método de Relações de Girard permite determinar as raízes mentalmente sem necessitar da Fórmula de Bhaskara para equações do tipo $ax^2 + bx + c = 0$.</p>
             
@@ -619,7 +700,7 @@
         </div>
 
         <!-- PÁGINA 5 -->
-        <div class="page anim-flip-3d">
+        <div class="page">
             <h2>📍 5. Vértice da Parábola</h2>
             <p>O vértice $V(X_v, Y_v)$ representa o ponto onde a função muda seu sentido (de decrescente para crescente ou vice-versa).</p>
             
@@ -663,7 +744,7 @@
         </div>
 
         <!-- PÁGINA 6 -->
-        <div class="page anim-bounce">
+        <div class="page">
             <h2>🔝 6. Valor Máximo e Mínimo</h2>
             <p>Os valores de máximo e mínimo são essenciais em problemas de otimização (área máxima, custo mínimo, lucro máximo).</p>
 
@@ -703,7 +784,7 @@
         </div>
 
         <!-- PÁGINA 7 -->
-        <div class="page anim-rotate-in">
+        <div class="page">
             <h2>📊 7. Conjunto Imagem Im(f)</h2>
             <p>O <strong>Conjunto Imagem</strong> representa todos os valores de <code>y</code> que a função atinge. Seu limite inicial ou final é sempre o <strong>Y_v (Y do Vértice)</strong>.</p>
             
@@ -752,7 +833,7 @@
         </div>
 
         <!-- PÁGINA 8 -->
-        <div class="page anim-slide-down">
+        <div class="page">
             <h2>📉📈 8. Crescimento e Decrescimento</h2>
             <p>A direção da curva altera-se exatamente no ponto <strong>X_v (X do Vértice)</strong>. Ele funciona como o divisor dos intervalos da função:</p>
 
@@ -797,18 +878,64 @@
 
             <div class="page-controls">
                 <button class="nav-btn" onclick="switchPage(6)">← Anterior</button>
-                <button class="nav-btn" disabled>Fim do Guia 🎉</button>
+                <button class="nav-btn" onclick="switchPage(8)">Ver Equipe 🎉 →</button>
+            </div>
+        </div>
+
+        <!-- PÁGINA 9 (NOVA - PARTICIPANTES) -->
+        <div class="page">
+            <h2>👥 9. Equipe de Desenvolvimento</h2>
+            <p>Projeto acadêmico interativo criado para facilitar o ensino e a visualização prática do conteúdo de Funções Quadráticas.</p>
+
+            <div class="team-grid">
+                <!-- Leonardo (Eu/Líder) -->
+                <div class="team-card leader">
+                    <div class="avatar">L</div>
+                    <div class="team-name">Leonardo</div>
+                    <div class="team-role">Desenvolvedor / Autor</div>
+                </div>
+
+                <!-- Kauan -->
+                <div class="team-card">
+                    <div class="avatar">K</div>
+                    <div class="team-name">Kauan</div>
+                    <div class="team-role">Integrante</div>
+                </div>
+
+                <!-- Mateus Antonio -->
+                <div class="team-card">
+                    <div class="avatar">M</div>
+                    <div class="team-name">Mateus Antonio</div>
+                    <div class="team-role">Integrante</div>
+                </div>
+
+                <!-- Gabriel H. -->
+                <div class="team-card">
+                    <div class="avatar">G</div>
+                    <div class="team-name">Gabriel H.</div>
+                    <div class="team-role">Integrante</div>
+                </div>
+            </div>
+
+            <div class="exercise-box" style="margin-top: 2.5rem; text-align: center; border-style: solid;">
+                <h4 style="color: var(--primary);">🎓 Módulo Concluído com Sucesso!</h4>
+                <p style="margin-bottom: 0;">Obrigado por utilizar nossa plataforma de estudos de matemática.</p>
+            </div>
+
+            <div class="page-controls">
+                <button class="nav-btn" onclick="switchPage(7)">← Voltar para Aula</button>
+                <button class="nav-btn" disabled>Fim 🎉</button>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>⚡ MathLab - Módulo de Estudo Interativo de Matemática</p>
+        <p>⚡ MathLab 2026 • Criado por Leonardo, Kauan, Mateus Antonio e Gabriel H.</p>
     </footer>
 
     <script>
         let currentPageIndex = 0;
-        const totalPages = 8;
+        const totalPages = 9;
         let isAppStarted = false;
 
         function startApp() {

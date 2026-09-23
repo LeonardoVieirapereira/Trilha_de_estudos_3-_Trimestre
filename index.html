@@ -12,7 +12,7 @@
     <style>
         :root {
             --bg-color: #030712;
-            --card-bg: rgba(15, 23, 42, 0.75);
+            --card-bg: rgba(15, 23, 42, 0.85);
             --primary: #38bdf8;
             --secondary: #818cf8;
             --accent: #f43f5e;
@@ -36,14 +36,55 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
-                radial-gradient(circle at 85% 85%, rgba(129, 140, 248, 0.12) 0%, transparent 40%),
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 30px 30px, 30px 30px;
-            background-position: 0 0, 0 0, -1px -1px, -1px -1px;
             min-height: 100vh;
+            position: relative;
+        }
+
+        /* --- ELEMENTOS FLUTUANTES DE BORDAS (FÓRMULAS DINÂMICAS) --- */
+        .math-bg-side {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            width: 250px;
+            pointer-events: none;
+            z-index: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 2rem 1rem;
+            font-family: var(--math-font);
+            font-size: 1.1rem;
+            color: rgba(56, 189, 248, 0.15);
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            white-space: nowrap;
+        }
+
+        .math-bg-left {
+            left: 10px;
+            text-align: left;
+        }
+
+        .math-bg-right {
+            right: 10px;
+            text-align: right;
+        }
+
+        .math-bg-side span {
+            display: block;
+            animation: floatMath 6s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatMath {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-15px) rotate(2deg); }
+        }
+
+        /* Hide background math on small screen to avoid overlap */
+        @media (max-width: 1200px) {
+            .math-bg-side {
+                display: none;
+            }
         }
 
         /* --- TELA INICIAL CYBER/GLASS --- */
@@ -64,7 +105,6 @@
             overflow: hidden;
         }
 
-        /* Esferas de Luz no Fundo da Intro */
         .intro-blob {
             position: absolute;
             border-radius: 50%;
@@ -171,6 +211,8 @@
         }
 
         header {
+            position: relative;
+            z-index: 10;
             text-align: center;
             padding: 2rem 1rem 1rem 1rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -233,6 +275,8 @@
         }
 
         main {
+            position: relative;
+            z-index: 10;
             max-width: 900px;
             margin: 2rem auto;
             padding: 0 1.5rem;
@@ -463,6 +507,8 @@
         }
 
         footer {
+            position: relative;
+            z-index: 10;
             text-align: center;
             padding: 2.5rem;
             color: var(--text-muted);
@@ -473,6 +519,14 @@
     </style>
 </head>
 <body>
+
+    <!-- BORDAS LATERAIS COM CONTAS E EQUAÇÕES DINÂMICAS -->
+    <div class="math-bg-side math-bg-left" id="bg-left">
+        <!-- Preenchido via JavaScript dinamicamente -->
+    </div>
+    <div class="math-bg-side math-bg-right" id="bg-right">
+        <!-- Preenchido via JavaScript dinamicamente -->
+    </div>
 
     <!-- TELA INICIAL CYBER -->
     <div id="intro-screen">
@@ -882,7 +936,7 @@
             </div>
         </div>
 
-        <!-- PÁGINA 9 (NOVA - PARTICIPANTES) -->
+        <!-- PÁGINA 9 (EQUIPE) -->
         <div class="page">
             <h2>👥 9. Equipe de Desenvolvimento</h2>
             <p>Projeto acadêmico interativo criado para facilitar o ensino e a visualização prática do conteúdo de Funções Quadráticas.</p>
@@ -938,6 +992,64 @@
         const totalPages = 9;
         let isAppStarted = false;
 
+        // Fórmulas matemáticas divididas por tópico da página
+        const mathTopicData = [
+            // Página 1: Definição
+            {
+                left: ["f(x) = ax² + bx + c", "a ≠ 0", "f(x) = 3x² - 5x + 2", "a, b, c ∈ ℝ"],
+                right: ["f(0) = c", "f(x) = -x² + 9", "f(x) = 2x²", "ax² + bx + c = 0"]
+            },
+            // Página 2: Gráfico
+            {
+                left: ["a > 0 ➔ ◡ (Cima)", "a < 0 ➔ ◠ (Baixo)", "Eixo de Simetria", "Ponto (0, c)"],
+                right: ["b > 0 (Sobe Y)", "b < 0 (Desce Y)", "Parábola", "Vértice V(Xv, Yv)"]
+            },
+            // Página 3: Zeros/Raízes
+            {
+                left: ["Δ = b² - 4ac", "x = (-b ± √Δ)/2a", "Δ > 0 ➔ 2 Raízes", "x₁ + x₂ = -b/a"],
+                right: ["Δ = 0 ➔ 1 Raiz", "Δ < 0 ➔ Sem Raiz", "f(x) = 0", "x₁ · x₂ = c/a"]
+            },
+            // Página 4: Soma e Produto
+            {
+                left: ["S = x₁ + x₂ = -b/a", "P = x₁ · x₂ = c/a", "x² - Sx + P = 0", "Soma: -b/a"],
+                right: ["Produto: c/a", "(x - x₁)(x - x₂) = 0", "x² - 9x + 20 = 0", "x₁=4, x₂=5"]
+            },
+            // Página 5: Vértice
+            {
+                left: ["X_v = -b / (2a)", "Y_v = -Δ / (4a)", "V(X_v, Y_v)", "X_v = (x₁ + x₂)/2"],
+                right: ["Ponto Extremo", "Mínimo/Máximo", "Y_v = f(X_v)", "Eixo X_v"]
+            },
+            // Página 6: Máximo e Mínimo
+            {
+                left: ["a > 0 ➔ Mínimo", "a < 0 ➔ Máximo", "h(t) = -5t² + 20t", "Y_max = -Δ/4a"],
+                right: ["t_max = -b/2a", "Lucro Máximo", "Altura Máxima", "Otimização"]
+            },
+            // Página 7: Imagem
+            {
+                left: ["Im(f) = [Yv, +∞)", "Im(f) = (-∞, Yv]", "y ≥ Y_v", "y ∈ ℝ"],
+                right: ["y ≤ Y_v", "Conjunto Imagem", "Domínio: ℝ", "Limitado por Y_v"]
+            },
+            // Página 8: Crescimento
+            {
+                left: ["x < X_v ➔ Decrescente", "x > X_v ➔ Crescente", "Intervalo: (-∞, Xv]", "Intervalo: [Xv, +∞)"],
+                right: ["Monotonia", "Mudança de Sentido", "Ponto Crítico X_v", "Análise de Sinais"]
+            },
+            // Página 9: Equipe
+            {
+                left: ["MathLab 2026", "Leonardo (Líder)", "Kauan", "Mateus Antonio"],
+                right: ["Gabriel H.", "Projeto Concluído", "100% Interativo", "10 / 10"]
+            }
+        ];
+
+        function updateSideMath(pageIndex) {
+            const leftContainer = document.getElementById('bg-left');
+            const rightContainer = document.getElementById('bg-right');
+            const data = mathTopicData[pageIndex] || mathTopicData[0];
+
+            leftContainer.innerHTML = data.left.map(item => `<span>${item}</span>`).join('');
+            rightContainer.innerHTML = data.right.map(item => `<span>${item}</span>`).join('');
+        }
+
         function startApp() {
             const intro = document.getElementById('intro-screen');
             intro.style.opacity = '0';
@@ -972,8 +1084,13 @@
                 }
             });
 
+            updateSideMath(currentPageIndex);
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateSideMath(0);
+        });
 
         document.addEventListener('keydown', function(event) {
             if (!isAppStarted) {
